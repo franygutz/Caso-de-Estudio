@@ -34,4 +34,5 @@ También, una carpeta con algoritmos elaborados en *PSeINT* y algunos documentos
 
 ### Datos guardados en el *.txt*
 Al digitar esos datos, en la carpeta de *output* se abre un archivo llamado "DatosDeCompras" y se guardan los datos más importantes de la compra:
+
 ![image](https://github.com/franygutz/Caso-de-Estudio/assets/168799451/781781a2-efa2-49be-aa7b-89ad31c70af3)
