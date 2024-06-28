@@ -1,0 +1,8 @@
+Nombre del cliente: Franya Dalila Gutierrez Lopez
+M�todo de pago: 1
+Moneda: 1
+C�digo de pago: 000931039392
+Direcci�n: San Rafael del Sur
+Email: franyagl@uamv.edu.ni
+N�mero de tel�fono: 86986452
+----------------------------------------
