@@ -1,95 +1,98 @@
-#include <iostream>
-#include <string>
-// Funci�n para seleccionar y comprar zapatos
+#include <iostream> //se incluye la libreria estandar de c++
+#include <string> //se incluye para poder hacer uso de tipos de datos de cadenas
+#include <locale.h> //para el manejo de tildes.
 
 
-const std::string PAYPAL_CORDOBAS = "ciclo.nicaragua121299@negocio.com]";
-const std::string PAYPAL_DOLARES = "ciclo.nicaragua1212@negocio.com]";
-const std::string BAC_CORDOBAS = "BAC1234567890";
-const std::string BAMPRO_CORDOBAS = "BAMPRO1234567890";
-const std::string AMEX_CORDOBAS = "AMEX1234567890";
-const std::string BAC_DOLARES = "BAC0987654321";
-const std::string BAMPRO_DOLARES = "BAMPRO0987654321";
-const std::string AMEX_DOLARES = "AMEX0987654321";
-const double equivalencia = 36.78;
-double cordo;
-double total;
-bool continuarCompra;
-int numTalla;
-int cantidadCompra;
-int tallaSiete, tallaOcho, tallaNueve, tallaDiez, tallaOnce, tallaDoce;
-int adidas_option, converse_option, sandalias_option, tacones_option;
+const std::string PAYPAL_CORDOBAS = "ciclo.nicaragua121299@negocio.com"; //constante tipo cadena que tiene como valor el correo al que esta vinculado la cuenta de paypal (cordobas) de ciclo
+const std::string PAYPAL_DOLARES = "ciclo.nicaragua1212@negocio.com"; //constante tipo cadena que tiene como valor el correo al que esta vinculado la cuenta de paypal (dolares) de ciclo
+const std::string BAC_CORDOBAS = "BAC1234567890"; //constante de tipo de dato string que tiene como valor la cuenta BAC de ciclo (cordobas)
+const std::string BAMPRO_CORDOBAS = "BAMPRO1234567890"; //constante de tipo de dato strng que tiene como valor la cuenta BAMPRO de ciclo(cordobas)
+const std::string AMEX_CORDOBAS = "AMEX1234567890"; //consatante de tipo string que tiene como valor la cuenta AMEX de ciclo (cordobas)
+const std::string BAC_DOLARES = "BAC0987654321"; //constante de tipo de dato string que tiene como valor la cuenta BAC de ciclo (dolares)
+const std::string BAMPRO_DOLARES = "BAMPRO0987654321"; //constante de tipo de dato strng que tiene como valor la cuenta BAMPRO de ciclo (dolares)
+const std::string AMEX_DOLARES = "AMEX0987654321"; //consatante de tipo string que tiene como valor la cuenta AMEX de ciclo  (dolares)
+const double equivalencia = 36.78; //constante de tipo double que representa la tasa de cambio de ciclo
+double cordo; //variable que representara el total de la compra en cordobas
+double total; //variable de total segun producto
+bool continuarCompra; //variable bool que permie continuar la cmompra cada que haya una condicion
+int numTalla; //variable que represete el numero de talla 
+int cantidadCompra; // variable que almacena 
+int tallaSiete, tallaOcho, tallaNueve, tallaDiez, tallaOnce, tallaDoce; //tallas de zapatos
+int adidas_option, converse_option, sandalias_option, tacones_option; // opciones para los diferentes switch
 
+//Empieza la funcion para seleccionar los zapatos
 double seleccionarZapatos() {
-    int option, zap_option;
+    setlocale(LC_ALL, "spanish"); //para poder visualizar las tildes y caracteres en espalñol. usar windows 1252
 
-    // Desglose de categor�as de zapatos
-    std::cout << "Categor�as de zapatos disponibles: " << std::endl;
+    int option, zap_option; //Se delclaran las variables que se usarán en los switch.
+
+    // Desglose de categorias de zapatos
+    std::cout << "Categorías de zapatos disponibles: " << std::endl;
     std::cout << "1. Zapatos deportivos\n2. Zapatos de dama\n" << std::endl;
-    std::cout << "Digite un n�mero para seleccionar la categor�a que desea: \n$: ";
-    std::cin >> option;
+    std::cout << "Digite un número para seleccionar la categor�a que desea: \n$: ";
+    std::cin >> option; //lectra de la opcion de zapatos
 
-    switch (option) {
-        case 1: // Zapatos deportivos
+    switch (option) { //switch de la opcion
+        case 1: // Si el usuario inserta un 1, se mostrara ek catalogo de zapatos deportios
             std::cout << "\nLos tenis disponibles son: \n1. Converse\n2. Adidas" << std::endl;
             std::cout << "Digite el n�mero del producto que desea comprar: \n$: ";
-            std::cin >> zap_option;
+            std::cin >> zap_option; //lectura de la opcion de los zapatos deportivos
 
             switch (zap_option) {
-                case 1: // Converse
+                case 1: // SI el usuario digita un 1: se mostrara el catalogo de converse
                     while (continuarCompra) {
                         std::cout << "Los Converse disponibles son: \n";
                         std::cout << "1. Custom Run Star Hike By You --- $140\n";
                         std::cout << "2. Chuck Taylor All Stars Washed Canvas --- $80\n";
                         std::cout << "3. Chuck Taylor All Stars (Clasicas) --- $75\n";
                         std::cout << "Digite el n�mero del producto que desea comprar: \n$: ";
-                        std::cin >> converse_option;
+                        std::cin >> converse_option; //lectura de la opcion de converse
 
                         switch (converse_option) {
 // Custom Run Star Hike By You
                             case 1: { 
-                                tallaSiete = 1, tallaOcho = 1, tallaDiez = 2;
+                                tallaSiete = 1, tallaOcho = 1, tallaDiez = 2;  //se inicializan los valores de las tallas disponibles
                                 std::cout << "\nHas seleccionado los Custom Run Star Hike By You, actualmente disponibles:\n";
                                 std::cout << "Talla 7: " << tallaSiete << " pares\n";
                                 std::cout << "Talla 8: " << tallaOcho << " pares\n";
-                                std::cout << "Talla 10: " << tallaDiez << " pares\n";
+                                std::cout << "Talla 10: " << tallaDiez << " pares\n"; //se imprimen las tallas disponibles
 
-                                std::cout << "\nPor favor ingrese el n�mero de talla que desea (o 0 para volver al men� principal): \n$: ";
-                                std::cin >> numTalla;
+                                std::cout << "\nPor favor ingrese el número de talla que desea (o 0 para volver al menú principal): \n$: "; 
+                                std::cin >> numTalla; //l usuario digita el numero de talla de la prenda
 
-                                if (numTalla == 0) {
-                                    continue;
+                                if (numTalla == 0) { //si el numero ingresado es un 0, vuelve al menu de converse
+                                    continue; 
                                 }
 
                                 // Verificar la disponibilidad de la talla
-                                if (numTalla != 7 && numTalla != 8 && numTalla != 10) {
-                                    std::cout << "\nLo sentimos, la talla seleccionada no est� disponible. \n \n" << std::endl;
-                                    continue;
+                                if (numTalla != 7 && numTalla != 8 && numTalla != 10) { //Si la talla es diferente de 7 y 8 y 10, entonces se imprime el siguiente mensaje
+                                    std::cout << "\nLo sentimos, la talla seleccionada no está disponible. \n \n" << std::endl;
+                                    continue; //y velve al menu de converse
                                 }
 
-                                std::cout << "�Cu�ntos pares desea comprar? \n$: ";
-                                std::cin >> cantidadCompra;
+                                std::cout << "¿Cuántos pares desea comprar? \n$: ";  //se le pregunta al usuario cuantos pares desea comprar
+                                std::cin >> cantidadCompra; 
 
                                 // Verificar la disponibilidad de la cantidad
                                 if ((numTalla == 7 && cantidadCompra > tallaSiete) || 
                                     (numTalla == 8 && cantidadCompra > tallaOcho) || 
-                                    (numTalla == 10 && cantidadCompra > tallaDiez)) {
+                                    (numTalla == 10 && cantidadCompra > tallaDiez)) {  //dependiendo del numero que haya ingresado el usuario se valida que la catidad de compra no sea mayor a la disponibildad de la talla
                                     std::cout << "\nLo sentimos, no tenemos suficientes pares en la talla seleccionada. Actualmente solo hay ";
                                     if (numTalla == 7) std::cout << tallaSiete;
                                     if (numTalla == 8) std::cout << tallaOcho;
                                     if (numTalla == 10) std::cout << tallaDiez;
-                                    std::cout << " par(es) disponibles. �Desea comprarlo(s)? (s/n) \n$: ";
+                                    std::cout << " par(es) disponibles. ¿Desea comprarlo(s)? (s/n) \n$: ";
                                     char confirm;
-                                    std::cin >> confirm;
-                                    if (confirm == 's' || confirm == 'S') {
-                                        cantidadCompra = (numTalla == 7) ? tallaSiete : (numTalla == 8) ? tallaOcho : tallaDiez;
+                                    std::cin >> confirm; //se lee el caracter que haya ingresdo el usuario
+                                    if (confirm == 's' || confirm == 'S') { //validacoion por si el usuario ingresa la S o s
+                                        cantidadCompra = (numTalla == 7) ? tallaSiete : (numTalla == 8) ? tallaOcho : tallaDiez; // Se Utiliza el operador ternario (?:) para evaluar múltiples condiciones. Primero, comprueba si numTalla es igual a 7, si es así, asigna el valor de tallaSiete a cantidadCompra. Si no, entonces verifica si numTalla es igual a 8, en cuyo caso asigna tallaOcho, y finalmente, si ninguna de las dos condiciones anteriores es verdadera, asigna tallaDiez.
                                     } else {
                                         continue;
                                     }
                                 }
 
                                 std::cout << "\nHa seleccionado " << cantidadCompra << " par(es) en la talla " << numTalla << ". " << std::endl;
-                                total += 140 * cantidadCompra;
+                                total += 140 * cantidadCompra; //el total se calcula con el producto del precio y la cantidad que ha decidido comprar el usuario
                                 break;
                             }
 // Chuck Taylor All Stars Washed Canvas
@@ -111,7 +114,7 @@ double seleccionarZapatos() {
                                     continue;
                                 }
 
-                            std::cout << "�Cu�ntos pares deseas comprar? \n$: ";
+                            std::cout << "¿Cuántos pares deseas comprar? \n$: ";
                             std::cin >> cantidadCompra;
 
                                 // Verificar la disponibilidad de la cantidad
@@ -152,7 +155,7 @@ double seleccionarZapatos() {
                                     continue;
                                 }
 
-                                std::cout << "\n�Cu�ntos pares deseas comprar? \n$: ";
+                                std::cout << "\n¿Cuántos pares deseas comprar? \n$: ";
                                 std::cin >> cantidadCompra;
 
                                 // Verificar la disponibilidad de la cantidad
@@ -177,10 +180,10 @@ double seleccionarZapatos() {
                             }
 //Si digita un numero fuera del rango
                             default:
-                                std::cout << "\nOpci�n no v�lida." << std::endl;
+                                std::cout << "\nOpción no válida." << std::endl;
                                 continue;
                         }
-                        std::cout << "\n�Desea comprar otro producto? (s/n) \n$: ";
+                        std::cout << "\n¿Desea comprar otro producto? (s/n) \n$: ";
                         char otraCompra;
                         std::cin >> otraCompra;
                         if (otraCompra != 's') {
@@ -219,7 +222,7 @@ double seleccionarZapatos() {
                                     continue;
                                 }
 
-                                std::cout << "\n�Cu�ntos pares desea comprar? \n$: ";
+                                std::cout << "\n¿Cuántos pares desea comprar? \n$: ";
                                 std::cin >> cantidadCompra;
 
                                 // Verificar la disponibilidad de la cantidad
@@ -261,7 +264,7 @@ double seleccionarZapatos() {
                                     continue;
                                 }
 
-                                std::cout << "\n�Cu�ntos pares deseas comprar? \n$: ";
+                                std::cout << "\n¿Cuántos pares desea comprar? \n$: ";
                                 std::cin >> cantidadCompra;
 
                                 // Verificar la disponibilidad de la cantidad
@@ -332,7 +335,7 @@ double seleccionarZapatos() {
                                 std::cout << "\nOpci�n no v�lida." << std::endl;
                                 continue;
                         }
-                        std::cout << "\n�Desea comprar otro producto? (s/n) ";
+                        std::cout << "\n¿Desea comprar otro producto? (s/n) ";
                         char otraCompra;
                         std::cin >> otraCompra;
                         if (otraCompra != 's') {
@@ -343,7 +346,7 @@ double seleccionarZapatos() {
                     break;
 
                 default:
-                    std::cout << "\nOpci�n de zapatos deportivos no v�lida. Por favor, vuelva a intentar." << std::endl;
+                    std::cout << "\nOpción de zapatos deportivos no v�lida. Por favor, vuelva a intentar." << std::endl;
                     break;
             }
             break;
@@ -352,16 +355,16 @@ double seleccionarZapatos() {
         case 2: // Zapatos de dama
             std::cout << "Los zapatos de dama disponibles son: ";
             std::cout << "\n1. Tacones\n2. Sandalias" << std::endl;
-             std::cout << "Digite el n�mero del producto que desea comprar: \n$: ";
+             std::cout << "Digite el número del producto que desea comprar: \n$: ";
             std::cin >> zap_option;
 
             switch (zap_option) {
                 case 1: //Tacones
                     while (continuarCompra) {
                         std::cout << "Los Tacones disponibles son: \n";
-                        std::cout << "1. Tac�n Rojo --- $120\n";
-                        std::cout << "2. Tac�n Negro --- $100\n";
-                        std::cout << "Digite el n�mero del producto que desea comprar: \n$: ";
+                        std::cout << "1. Tacón Rojo --- $120\n";
+                        std::cout << "2. Tacón Negro --- $100\n";
+                        std::cout << "Digite el número del producto que desea comprar: \n$: ";
                         std::cin >> tacones_option;
 
                         switch (tacones_option) {
@@ -372,7 +375,7 @@ double seleccionarZapatos() {
                                 std::cout << "Talla 7: " << tallaSiete << " pares\n";
                                 std::cout << "Talla 10: " << tallaDiez << " pares\n";
 
-                                std::cout << "\nPor favor ingrese el n�mero de talla que desea (o 0 para volver al men� principal): \n$: ";
+                                std::cout << "\nPor favor ingrese el número de talla que desea (o 0 para volver al menú principal): \n$: ";
                                 std::cin >> numTalla;
 
                                 if (numTalla == 0) {
@@ -381,11 +384,11 @@ double seleccionarZapatos() {
 
                                 // Verificar la disponibilidad de la talla
                                 if (numTalla != 7 && numTalla != 10) {
-                                    std::cout << "\nLo sentimos, la talla seleccionada no est� disponible. \n \n" << std::endl;
+                                    std::cout << "\nLo sentimos, la talla seleccionada no está disponible. \n \n" << std::endl;
                                     continue;
                                 }
 
-                                std::cout << "�Cu�ntos pares desea comprar? \n$: ";
+                                std::cout << "¿Cuántos pares desea comprar? \n$: ";
                                 std::cin >> cantidadCompra;
 
                                 // Verificar la disponibilidad de la cantidad
@@ -413,7 +416,7 @@ double seleccionarZapatos() {
                                 tallaNueve = 1;
                                 std::cout << "\nHas seleccionado Tac�n Negro, actualmente solo hay: ";
                                 std::cout << "Talla 9: " << tallaNueve << " disponibles" <<std::endl;
-                                std::cout << "\nPor favor ingresa el numero de talla que deseas (o 0 para volver al men� principal): \n$: ";
+                                std::cout << "\nPor favor ingresa el numero de talla que deseas (o 0 para volver al menú principal): \n$: ";
                                 std::cin >> numTalla;
 
                                 if (numTalla == 0) {
@@ -422,18 +425,18 @@ double seleccionarZapatos() {
 
                                 // Verificar la disponibilidad de la talla
                                 if (numTalla != 9) {
-                                    std::cout << "\nLo sentimos, la talla seleccionada no est� disponible." << std::endl;
+                                    std::cout << "\nLo sentimos, la talla seleccionada no está disponible." << std::endl;
                                     continue;
                                 }
 
-                            std::cout << "�Cu�ntos pares deseas comprar? \n$: ";
+                            std::cout << "¿Cuántos pares deseas comprar? \n$: ";
                             std::cin >> cantidadCompra;
 
                                 // Verificar la disponibilidad de la cantidad
                                 if (numTalla == 9 && cantidadCompra > tallaNueve) {
                                         std::cout << "\nLo sentimos, no tenemos suficientes pares en la talla seleccionada. Actualmente solo hay ";
                                             if (numTalla == 9) std::cout << tallaNueve;
-                                                std::cout << " par(es) disponibles. �Deseas comprarlo(s)? (s/n) \n$: ";
+                                                std::cout << " par(es) disponibles. ¿Deseas comprarlo(s)? (s/n) \n$: ";
                                                 char confirm;
                                                 std::cin >> confirm;
                                             if (confirm == 's' || confirm == 'S') {
@@ -448,10 +451,10 @@ double seleccionarZapatos() {
                             }
 //Si digita un numero fuera del rango
                             default:
-                                std::cout << "\nOpci�n no v�lida." << std::endl;
+                                std::cout << "\nOpción no válida." << std::endl;
                                 continue;
                         }
-                        std::cout << "\n�Desea comprar otro producto? (s/n) \n$: ";
+                        std::cout << "\n¿Desea comprar otro producto? (s/n) \n$: ";
                         char otraCompra;
                         std::cin >> otraCompra;
                         if (otraCompra != 's') {
@@ -477,7 +480,7 @@ double seleccionarZapatos() {
                                 std::cout << "Talla 11: " << tallaOnce << " pares\n";
                                 std::cout << "Talla 12: " << tallaDoce << " pares\n";
 
-                                std::cout << "\nPor favor ingrese el n�mero de talla que desea (o 0 para volver al men� principal): \n$: ";
+                                std::cout << "\nPor favor ingrese el número de talla que desea (o 0 para volver al menú principal): \n$: ";
                                 std::cin >> numTalla;
 
                                 if (numTalla == 0) {
@@ -486,11 +489,11 @@ double seleccionarZapatos() {
 
                                 // Verificar la disponibilidad de la talla
                                 if (numTalla !=11 && numTalla != 12) {
-                                    std::cout << "\nLo sentimos, la talla seleccionada no est� disponible." << std::endl;
+                                    std::cout << "\nLo sentimos, la talla seleccionada no está disponible." << std::endl;
                                     continue;
                                 }
 
-                                std::cout << "\n�Cu�ntos pares desea comprar? \n$: ";
+                                std::cout << "\n¿Cuántos pares desea comprar? \n$: ";
                                 std::cin >> cantidadCompra;
 
                                 // Verificar la disponibilidad de la cantidad
@@ -499,7 +502,7 @@ double seleccionarZapatos() {
                                     std::cout << "\nLo sentimos, no tenemos suficientes pares en la talla seleccionada. Actualmente solo hay ";
                                     if (numTalla == 11) std::cout << tallaOnce;
                                     if (numTalla == 12) std::cout << tallaDoce;
-                                    std::cout << " par(es) disponibles. �Desea comprarlo(s)? (s/n) \n$: ";
+                                    std::cout << " par(es) disponibles. ¿Desea comprarlo(s)? (s/n) \n$: ";
                                     char confirm;
                                     std::cin >> confirm;
                                     if (confirm == 's' || confirm == 'S') {
@@ -532,7 +535,7 @@ double seleccionarZapatos() {
                                     continue;
                                 }
 
-                                std::cout << "\n�Cu�ntos pares deseas comprar? \n$: ";
+                                std::cout << "\n¿Cuántos pares desea comprar? \n$: ";
                                 std::cin >> cantidadCompra;
 
                                 // Verificar la disponibilidad de la cantidad
@@ -541,7 +544,7 @@ double seleccionarZapatos() {
                                         std::cout << "\nLo sentimos, no tenemos suficientes pares en la talla seleccionada. Actualmente solo hay ";
                                             if (numTalla == 8) std::cout << tallaOcho;
                                             if (numTalla == 10) std::cout << tallaDiez;
-                                                std::cout << " par(es) disponibles. �Deseas comprarlo(s)? (s/n) \n$: ";
+                                                std::cout << " par(es) disponibles. ¿Deseas comprarlo(s)? (s/n) \n$: ";
                                                 char confirm;
                                                 std::cin >> confirm;
                                             if (confirm == 's' || confirm == 'S') {
@@ -557,10 +560,10 @@ double seleccionarZapatos() {
 
 //Si digita un numero fuera del rango
                             default:
-                                std::cout << "\nOpci�n no v�lida." << std::endl;
+                                std::cout << "\nOpción no válida." << std::endl;
                                 continue;
                         }
-                        std::cout << "\n�Desea comprar otro producto? (s/n) ";
+                        std::cout << "\n¿Desea comprar otro producto? (s/n) ";
                         char otraCompra;
                         std::cin >> otraCompra;
                         if (otraCompra != 's') {
@@ -571,12 +574,12 @@ double seleccionarZapatos() {
                     break;
 
                 default:
-                    std::cout << "\nOpci�n de zapatos de dama no v�lida. Por favor, vuelva a intentar." << std::endl;
+                    std::cout << "\nOpción de zapatos de dama no válida. Por favor, vuelva a intentar." << std::endl;
                     break;
             }
             break;
         default:
-            std::cout << "Opci�n no incluida. Por favor, vuelva a intentar." << std::endl;
+            std::cout << "Opción no incluida. Por favor, vuelva a intentar." << std::endl;
             break;
     }
 
@@ -635,12 +638,14 @@ double seleccionarCamisas() {
                                 (tallaSeleccionada == "M" && cantidadCompra > m) ||
                                 (tallaSeleccionada == "S" && cantidadCompra > s) ||
                                 (tallaSeleccionada == "XS" && cantidadCompra > xs)) {
+                                    //verifica si la talla seleccionada (tallaSeleccionada) está disponible en la cantidad solicitada (cantidadCompra). Para cada talla posible ("XL", "L", "M", "S", "XS"), compara si la cantidad solicitada excede la cantidad disponible (xl, l, m, s, xs). Si alguna de estas condiciones es verdadera, significa que no hay suficientes camisas en la talla seleccionada.
                                 std::cout << "\nLo sentimos, no tenemos suficientes camisas en la talla seleccionada. Actualmente solo hay ";
                                 if (tallaSeleccionada == "XL") std::cout << xl;
                                 if (tallaSeleccionada == "L") std::cout << l;
                                 if (tallaSeleccionada == "M") std::cout << m;
                                 if (tallaSeleccionada == "S") std::cout << s;
                                 if (tallaSeleccionada == "XS") std::cout << xs;
+                                //verifica cuál es la talla seleccionada y, dependiendo de eso, imprime la cantidad disponible correspondiente (xl, l, m, s, xs). 
                                 std::cout << " camisas disponibles. �Desea comprarla(s)? (s/n) \n$: ";
                                 char confirm;
                                 std::cin >> confirm;
@@ -677,7 +682,7 @@ double seleccionarCamisas() {
                                 continue;
                             }
 
-                            std::cout << "�Cu�ntas camisas desea comprar? \n$: ";
+                            std::cout << "¿Cuántas camisas desea comprar? \n$: ";
                             std::cin >> cantidadCompra;
 
                             // Verificar la disponibilidad de la cantidad
@@ -707,7 +712,7 @@ double seleccionarCamisas() {
                             break;
 
                         default:
-                            std::cout << "\nOpci�n no v�lida." << std::endl;
+                            std::cout << "\nOpción no válida." << std::endl;
                             continue;
                     }
                     std::cout << "\n�Desea comprar otro producto? (s/n) \n$: ";
