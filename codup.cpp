@@ -1,20 +1,21 @@
-#include <iostream>
-#include <string>
-#include <conio.h>
-#include <cstring>
-#include <windows.h>
-#include <fstream>
-#include <locale.h>
-#include "items.h"
+/*Elaborado por: Nicolas Laguna, Franya Gutierrez, Valeria Grijalva y Carlos Briones.
+Empezado el: 10 de Mayo del 2024
+Finalizado el: 27 de Junio del 2024
+Version: 6.0*/
+
+#include <iostream> //libreria estandar de c++
+#include <string> //para trabajar con strings
+#include <conio.h> // para el uso de getch
+#include <windows.h> //para trabajar con colores
+#include <fstream> //para abrir archivos
+#include <locale.h> //para incluir el setlocale
+#include "items.h" //incluir a la cabecera donde estan todas las funciones
 
 
 using namespace std;
 
-//constante que refleja la equivalencia de 1 dolar a moneda nicaraguense
-
-
-struct pago { 
-    int moneda;
+struct pago { //struct de pago que funciona para los metodos de pago 
+    int moneda; 
     int metodoPago;
     string codigoPago;
 } modo;
@@ -28,11 +29,11 @@ void seleccionarMetodoPago() {
         cout << "3. Cancelar compra\n";
         cout << "Digita el número de la moneda: ";
 
-        cin >> modo.moneda;
-        cin.ignore(); // Limpiar el buffer del cin
+        cin >> modo.moneda; //lectura de la moneda
+        cin.ignore(); // Limpiar el buffer 
         system("cls"); // Limpiar la pantalla
 
-        if (modo.moneda == 3) {
+        if (modo.moneda == 3) { //si la opcion de la moneda es igual a 3, se cancela la compra
             cout << "Compra cancelada.\n";
             break;
         }
@@ -48,7 +49,7 @@ void seleccionarMetodoPago() {
         cin.ignore(); // Limpiar el buffer del cin
         system("cls"); // Limpiar la pantalla
 
-        if (modo.metodoPago == 3) {
+        if (modo.metodoPago == 3) { //si e metodo de pago es igual a 3, se vuelve a presentar el menu
             continue;
         }
 
@@ -59,6 +60,7 @@ void seleccionarMetodoPago() {
                 switch (modo.metodoPago) {
                     case 1:
                         // Transferencia bancaria
+                        //aca se llaman a lasconstantes declaradasd en la cabecera
                         cout << "Los números del depósito del negocio en Córdobas son:\n";
                         cout << "BAC: " << BAC_CORDOBAS << "\n";
                         cout << "BAMPRO: " << BAMPRO_CORDOBAS << "\n";
@@ -131,13 +133,13 @@ struct Usuario {
 
 //procedimiento para anadir color
 void setColor(int color) {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, color);
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //comando predeterminado
+    SetConsoleTextAttribute(hConsole, color);//comando predeterminado
 }
 
 //procedimiento para volver al color normal
 void resetColor() {
-    setColor(7);
+    setColor(7); //7 pq es el color blanco oridinario de la consola
 }
 
 // procedimiento para leer una cadena limitada por longitud m�xima
@@ -203,7 +205,7 @@ void leerIngreso(){
     setColor(14);
     std::cout << "$: ";
     resetColor();
-    leerCadena(user.nombre, 100);
+    leerCadena(user.nombre, 100); //permite que no permita ingresar mas caracteres de 100
 
     setColor(10);
     std::cout << "Apellidos: " << std::endl;
@@ -211,26 +213,26 @@ void leerIngreso(){
     setColor(14);
     std::cout << "$: ";
     resetColor();
-    leerCadena(user.apellido, 100);
+    leerCadena(user.apellido, 100); //permite que no permita ingresar mas caracteres de 100
 
     setColor(10);
-    std::cout << "C�dula de identidad: " << std::endl;
+    std::cout << "Cédula de identidad: " << std::endl;
     resetColor();
     setColor(14);
     std::cout << "$: ";
     resetColor();
-    leerCadena(user.id, 17);
+    leerCadena(user.id, 17); //permite que no permita ingresar mas caracteres de 17
 
     setColor(10);
-    std::cout << "Correo electr�nico: " << std::endl;
+    std::cout << "Correo electrónico: " << std::endl;
     resetColor();
     setColor(14);
     std::cout << "$: ";
     resetColor();
-    leerCadena(user.email, 100);
+    leerCadena(user.email, 100); //permite que no permita ingresar mas caracteres de 100
 
     setColor(10);
-    std::cout << "Tel�fono celular: " << std::endl;
+    std::cout << "Teléfono celular: " << std::endl;
     resetColor();
     setColor(14);
     std::cout << "$: ";
@@ -238,7 +240,7 @@ void leerIngreso(){
     leerTelefono(user.telefono, 9); // Usar leerTelefono para el n�mero de tel�fono
 
     setColor(10);
-    std::cout << "Direcci�n: " << std::endl;
+    std::cout << "Dirección: " << std::endl;
     resetColor();
     setColor(14);
     std::cout << "$: ";
@@ -249,32 +251,32 @@ void leerIngreso(){
 // Función para escribir en el archivo
 void escribirRegistro() {
     ofstream archivo("DatosDeCompras.txt", ios::app); // Abre el archivo en modo append
-    archivo << "Nombre del cliente: " << user.nombre << " " << user.apellido << endl;
-    archivo << "Método de pago: " << modo.metodoPago << endl;
-    archivo << "Moneda: " << modo.moneda << endl;
-    archivo << "Código de pago: " << modo.codigoPago << endl;
-    archivo << "Dirección: " << user.address << endl;
-    archivo << "Email: " << user.email << endl;
-    archivo << "Número de teléfono: " << user.telefono << endl;
+    archivo << "Nombre del cliente: " << user.nombre << " " << user.apellido << endl; //imprime nombres y apellidos
+    archivo << "Método de pago: " << modo.metodoPago << endl; //imprime el metodo de pago seleccionado por el usuario
+    archivo << "Moneda: " << modo.moneda << endl; //imprime la moneda seleccionada por el usuario
+    archivo << "Código de pago: " << modo.codigoPago << endl; //imprime el codigo de pago ingresado por el usuario
+    archivo << "Dirección: " << user.address << endl; //imprime la direccion del usuario
+    archivo << "Email: " << user.email << endl; //imprime el email del usuario
+    archivo << "Número de teléfono: " << user.telefono << endl; //imprime el cel del usuario
     archivo << "----------------------------------------\n"; // Separador entre registros
     archivo.close(); // Cierra el archivo cuando terminas de escribir
 }
 
 
-int main() { //falta agregar el fichero
+int main() { 
     std:: cout << "Bienvenid@ al Sistema de compras de Ciclo";
     
     leerIngreso();
     
     cout << "\nHola " << user.nombre << " "<< user.apellido << ", gracias por preferirnos.\n\n";
     
-    string categorias[] = {"Camisas", "Pantalones", "Zapatos"};
+    string categorias[] = {"Camisas", "Pantalones", "Zapatos"}; //se establece un string con las categorias
     int numCategorias = 3;
     
     double totalCompra = 0.0;
     bool seguirComprando = true;
     while (seguirComprando) {
-        cout << "En ciclo, dividimos nuestras prendas en 3 categor�as:\n";
+        cout << "En ciclo, dividimos nuestras prendas en 3 categorías:\n";
         for (int i = 0; i < numCategorias; ++i) {
             cout << i + 1 << ". " << categorias[i] << endl;
         }
@@ -283,13 +285,14 @@ int main() { //falta agregar el fichero
         cin >> categoriaSeleccionada;
         cin.ignore();
         system("cls");
-        //cat invalida si el numero no est� en el rango
-        if (categoriaSeleccionada < 1 || categoriaSeleccionada > numCategorias) {
+        
+        if (categoriaSeleccionada < 1 || categoriaSeleccionada > numCategorias) { //si la categoria no esta en el rango
             cout << "Categoria invalida. Intentalo de nuevo.\n";
             system("cls");
             continue;
         }
 
+        //dependiendo a que categoria se llamo
         if (categoriaSeleccionada == 1) {
             totalCompra += seleccionarCamisas();
         } else if (categoriaSeleccionada == 2) {
@@ -300,12 +303,15 @@ int main() { //falta agregar el fichero
             cout << "\nCategoria de " << categorias[categoriaSeleccionada - 1] << " no tiene productos detallados en este ejemplo.\n";
         }
         
+
+        //si el usuario desea escoger otro del menu
         system("cls");
         cout << "Deseas escoger otro? (1. Si / 2. No): ";
         int opcion;
         cin >> opcion;
         cin.ignore();
         
+        //si la opcion es la 2, entonces deja de seguir comprando
         if (opcion == 2) {
             seguirComprando = false;
         }
@@ -314,7 +320,7 @@ int main() { //falta agregar el fichero
 
     system("cls");
 
-    cordo = equivalencia * totalCompra;
+    cordo = equivalencia * totalCompra; //total de la compra en cordobas
     cout << "El total de tu compra en dólares es: $" << totalCompra << endl;
     cout << "El total de tu compra en códobas es: C$" << cordo << endl;
     seleccionarMetodoPago();
@@ -330,11 +336,11 @@ int main() { //falta agregar el fichero
         string resena;
         cout << "Por favor, deja tu resenia:";
         getline(cin, resena);
-        cout << "Gracias por tu resenia.\n";
+        cout << "Gracias por tu reseña.\n";
     }
     system("cls");
-    cout << "Gracias por usar el sistema de compras de la tienda ciclo. Cuando verifiquemos que el pago ha sido realizado, se te notificará via correo: ";
-    cout << user.email << " y a través de WhatsApp, al número: " << user.telefono << ". Hasta luego.\n";
+    cout << "Gracias por usar el sistema de compras de la tienda ciclo. \n\nCuando verifiquemos que el pago ha sido realizado, se te notificará via: \nCorreo: ";
+    cout << user.email << "\nWhatsApp: " << user.telefono << "\nHasta luego.\n";
     
     escribirRegistro();
     return 0;
