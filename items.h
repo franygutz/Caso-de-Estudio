@@ -24,7 +24,10 @@ int adidas_option, converse_option, sandalias_option, tacones_option; // opcione
 double seleccionarZapatos() {
     setlocale(LC_ALL, "spanish"); //para poder visualizar las tildes y caracteres en espalñol. usar windows 1252
 
-    int option, zap_option; //Se delclaran las variables que se usarán en los switch.
+    int option, zap_option, adidas_option, converse_option, sandalias_option, tacones_option; //Se delclaran las variables que se usarán en los switch.
+    double total = 0;
+    bool continuarCompra = true;
+    int numTalla;
 
     // Desglose de categorias de zapatos
     std::cout << "Categorías de zapatos disponibles: " << std::endl;
